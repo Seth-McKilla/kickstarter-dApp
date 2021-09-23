@@ -24,13 +24,12 @@ contract Campaign {
         mapping(address => bool) approvals;
     }
     
-    mapping(uint => Request) requests;
+    mapping(uint => Request) public requests;
     uint numRequests;
     address public manager;
     uint public minimumContribution;
     mapping(address => bool) public approvers;
     uint public approversCount;
-    
     
     modifier restricted() {
         require(msg.sender == manager);
@@ -57,6 +56,10 @@ contract Campaign {
         newRequest.recipient = recipient;
         newRequest.complete = false;
         newRequest.approvalCount = 0;
+    }
+
+    function getRequestDesc(uint index) public view returns (string memory) {
+        return requests[index].description;
     }
     
     function approveRequest(uint index) public {

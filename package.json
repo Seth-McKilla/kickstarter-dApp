@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "compile:contract": "node ethereum/compile.js",
     "test": "mocha"
   },
   "keywords": [],
