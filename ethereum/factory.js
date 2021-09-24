@@ -1,9 +1,9 @@
-import dotenv from "dotenv";
-dotenv.config();
 import web3 from "./web3";
-import compiledFactory from "../ethereum/build/CampaignFactory.json";
+import CampaignFactory from "./build/CampaignFactory.json";
 
-export default new web3.eth.Contract(
-  compiledFactory.abi,
+const instance = new web3.eth.Contract(
+  CampaignFactory.abi,
   process.env.CONTRACT_ADDRESS
 );
+
+export default instance;
