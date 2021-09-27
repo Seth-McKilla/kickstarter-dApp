@@ -1,7 +1,6 @@
-import "semantic-ui-css/semantic.min.css";
-import * as React from "react";
 import factory from "../ethereum/factory";
-import { Card } from "semantic-ui-react";
+import { Card, Button } from "semantic-ui-react";
+import { Layout } from "../components";
 
 function Home({ campaigns }) {
   const renderCampaigns = () => {
@@ -15,7 +14,15 @@ function Home({ campaigns }) {
     return <Card.Group items={items} />;
   };
 
-  return <div>{renderCampaigns()}</div>;
+  return (
+    <Layout>
+      <div>
+        <h3>Open Campaigns</h3>
+        <Button floated="right" content="Create Campaign" icon="add" primary />
+        {renderCampaigns()}
+      </div>
+    </Layout>
+  );
 }
 
 Home.getInitialProps = async () => {
