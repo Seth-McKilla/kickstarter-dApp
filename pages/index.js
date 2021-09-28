@@ -1,3 +1,4 @@
+import Link from "next/link";
 import factory from "../ethereum/factory";
 import { Card, Button } from "semantic-ui-react";
 import { Layout } from "../components";
@@ -7,7 +8,11 @@ function Home({ campaigns }) {
     const items = campaigns.map((address) => {
       return {
         header: address,
-        description: <a>View Campaign</a>,
+        description: (
+          <Link href={`/campaigns/${encodeURIComponent(address)}`}>
+            View Campaign
+          </Link>
+        ),
         fluid: true,
       };
     });
@@ -25,9 +30,13 @@ function Home({ campaigns }) {
   );
 }
 
-Home.getInitialProps = async () => {
-  const campaigns = await factory.methods.getDeployedCampaigns().call();
-  return { campaigns };
-};
+export async function getServerSideProps() {
+  try {
+    const campaigns = await factory.methods.getDeployedCampaigns().call();
+    return { props: { campaigns } };
+  } catch (error) {
+    console.log(error.message);
+  }
+}
 
 export default Home;
