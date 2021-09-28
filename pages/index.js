@@ -3,7 +3,7 @@ import factory from "../ethereum/factory";
 import { Card, Button } from "semantic-ui-react";
 import { Layout } from "../components";
 
-function Home({ campaigns }) {
+export default function Home({ campaigns }) {
   const renderCampaigns = () => {
     const items = campaigns.map((address) => {
       return {
@@ -38,5 +38,3 @@ export async function getServerSideProps() {
     console.log(error.message);
   }
 }
-
-export default Home;
