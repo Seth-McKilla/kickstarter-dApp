@@ -10,7 +10,7 @@ export default function Home({ campaigns }) {
         header: address,
         description: (
           <Link href={`/campaigns/${encodeURIComponent(address)}`}>
-            View Campaign
+            <a>View Campaign</a>
           </Link>
         ),
         fluid: true,
@@ -23,7 +23,16 @@ export default function Home({ campaigns }) {
     <Layout>
       <div>
         <h3>Open Campaigns</h3>
-        <Button floated="right" content="Create Campaign" icon="add" primary />
+        <Link href="/campaigns/new">
+          <a>
+            <Button
+              floated="right"
+              content="Create Campaign"
+              icon="add"
+              primary
+            />
+          </a>
+        </Link>
         {renderCampaigns()}
       </div>
     </Layout>
