@@ -44,6 +44,6 @@ export async function getServerSideProps() {
     const campaigns = await factory.methods.getDeployedCampaigns().call();
     return { props: { campaigns } };
   } catch (error) {
-    console.log(error.message);
+    console.error(error.message);
   }
 }

@@ -22,12 +22,13 @@ export default function New() {
       await factory.methods.createCampaign(minContribution).send({
         from: accounts[0],
       });
-      return router.push("/");
+      router.push("/");
     } catch (error) {
+      console.error(error);
       setErrorMessage(error.message);
     }
 
-    setLoading(false);
+    return setLoading(false);
   };
 
   return (
