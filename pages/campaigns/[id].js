@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { Layout } from "../../components";
+import { Layout, ContributeForm } from "../../components";
 import { Card } from "semantic-ui-react";
 import useSummary from "../../hooks/useSummary";
 import web3 from "../../ethereum/web3";
@@ -56,5 +56,10 @@ export default function CampaignShow() {
     return <Card.Group items={items} />;
   };
 
-  return <Layout>{renderCards()}</Layout>;
+  return (
+    <Layout>
+      {renderCards()}
+      <ContributeForm />
+    </Layout>
+  );
 }
