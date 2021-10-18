@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { Layout, ContributeForm } from "../../components";
-import { Card } from "semantic-ui-react";
+import { Card, Grid } from "semantic-ui-react";
 import useSummary from "../../hooks/useSummary";
 import web3 from "../../ethereum/web3";
 
 export default function CampaignShow() {
   const router = useRouter();
-  const { id } = router.query;
+  const { address } = router.query;
 
   const {
     summary: {
@@ -16,7 +16,7 @@ export default function CampaignShow() {
       approversCount,
       manager,
     },
-  } = useSummary(id);
+  } = useSummary(address);
 
   const renderCards = () => {
     const items = [
@@ -58,8 +58,13 @@ export default function CampaignShow() {
 
   return (
     <Layout>
-      {renderCards()}
-      <ContributeForm />
+      <h3>Campaign Details</h3>
+      <Grid>
+        <Grid.Column width={10}>{renderCards()}</Grid.Column>
+        <Grid.Column width={6}>
+          <ContributeForm address={address} />
+        </Grid.Column>
+      </Grid>
     </Layout>
   );
 }

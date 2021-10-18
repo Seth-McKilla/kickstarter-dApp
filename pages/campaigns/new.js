@@ -47,7 +47,7 @@ export default function New() {
         </Form.Field>
 
         <Message error header="Oops!" content={errorMessage} />
-        <Button primary loading={loading}>
+        <Button primary loading={loading} disabled={loading}>
           Create!
         </Button>
       </Form>
