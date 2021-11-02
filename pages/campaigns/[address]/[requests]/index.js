@@ -3,7 +3,12 @@ import { Layout, RequestRow } from "../../../../components";
 import { Button, Table } from "semantic-ui-react";
 import Campaign from "../../../../ethereum/campaign";
 
-export default function Requests({ address, requests, approversCount }) {
+export default function Requests({
+  address,
+  requests,
+  requestCount,
+  approversCount,
+}) {
   const { Header, Row, HeaderCell, Body } = Table;
 
   const renderRows = () =>
@@ -21,7 +26,11 @@ export default function Requests({ address, requests, approversCount }) {
     <Layout>
       <h3>Requests List</h3>
       <Link href={`/campaigns/${address}/requests/new`} passHref>
-        <Button primary>Add Request</Button>
+        <a>
+          <Button primary floated="right" style={{ marginBottom: 10 }}>
+            Add Request
+          </Button>
+        </a>
       </Link>
       <Table>
         <Header>
@@ -37,6 +46,7 @@ export default function Requests({ address, requests, approversCount }) {
         </Header>
         <Body>{renderRows()}</Body>
       </Table>
+      <div>Found {requestCount} requests.</div>
     </Layout>
   );
 }
